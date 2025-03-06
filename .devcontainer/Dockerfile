@@ -72,6 +72,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   openssh-client \
   python3-argcomplete \
   python3-pip \
+  python3-venv \
   ros-dev-tools \
   ros-humble-ament-* \
   vim \
@@ -107,6 +108,17 @@ RUN apt-get update && apt-get install -y git-core bash-completion \
 ENV DEBIAN_FRONTEND=
 ENV AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS=1
 
+
+# Install RealSense packages
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+   && apt-get -y install --no-install-recommends \
+       ros-humble-librealsense2* \
+       ros-humble-realsense2-* \
+   && apt-get autoremove -y \
+   && apt-get clean -y \
+   && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=dialog
 
 # ** [Optional] Uncomment this section to install additional packages. **
 #

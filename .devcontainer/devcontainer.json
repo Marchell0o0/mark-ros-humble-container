@@ -1,11 +1,11 @@
 {
     "name": "ROS 2 Development Container",
     "privileged": true,
-    "remoteUser": "behrejan",
+    "remoteUser": "imitlearn",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
-            "USERNAME": "behrejan",
+            "USERNAME": "imitlearn",
             "WORKSPACE": "/home/ws"
         }
     },
@@ -26,12 +26,13 @@
     "containerEnv": {
         "DISPLAY": "unix:0",
         "ROS_AUTOMATIC_DISCOVERY_RANGE": "SUBNET",
-        "ROS_DOMAIN_ID": "42",
+        "ROS_DOMAIN_ID": "77",
         "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp" // or "rmw_cyclonedds_cpp"
     },
     "runArgs": [
         "--net=host",
         "--ipc=host",
+        "--gpus=all",
         "-e", "DISPLAY=${env:DISPLAY}"
     ],
     "mounts": [

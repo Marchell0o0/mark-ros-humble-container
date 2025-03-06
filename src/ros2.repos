@@ -4,7 +4,19 @@
 # Example:
 ############
 repositories:
-  examples:
+  server: 
     type: git
-    url: https://github.com/ros2/examples.git
-    version: humble
+    url: git@gitlab.ciirc.cvut.cz:imitrob/common-imitrob-setup-hw-sw/imitrob_robot_server.git
+    version: main
+  interfaces:
+    type: git
+    url: git@gitlab.ciirc.cvut.cz:imitrob/common-imitrob-setup-hw-sw/imitrob_common_interfaces.git
+    version: main
+  client:
+    type: git
+    url: git@gitlab.ciirc.cvut.cz:imitrob/common-imitrob-setup-hw-sw/imitrob_robot_client.git
+    version: main
+  mark_interactive_properties:
+    type: git
+    url: git@gitlab.ciirc.cvut.cz:imitrob/student_projects/mark-horpynych-interactive-properties.git
+    version: develop
