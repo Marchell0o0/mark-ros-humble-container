@@ -6,6 +6,26 @@ In root folder in Docker Container you should run:
 source ./install/setup.bash
 ```
 
+### Cameras
+
+Cameras with all their calibration and ids are stored in `cameras.yml`.
+
+Update calibration data for a camera in cameras.yml
+
+```bash
+python3 src/get_camera_intrinsics.py --camera <camera_name>
+```
+
+Run the camera nodes from cameras.yml
+
+```bash
+ros2 launch src/multi_camera_launch.py
+```
+
+
+
+
+
 Useful commands:
 ```bash
 
@@ -23,6 +43,10 @@ ros2 topic list -v
 # ros2 launch realsense2_camera rs_launch.py
 # sets color resolution to 1280x720 at 15 fps and depth resolution to 1280x720 at 5 fps
 ros2 launch realsense2_camera rs_launch.py rgb_camera.color_profile:=1280x720x15 depth_module.depth_profile:=1280x720x5
+
+roslaunch realsense2_camera rs_camera.launch camera:=cam_1 serial_no:=108222250719
+roslaunch realsense2_camera rs_camera.launch camera:=cam_2 serial_no:=105322250885
+
 ```
 
 ## Running detect_and_pick.py
