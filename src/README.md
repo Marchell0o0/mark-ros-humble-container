@@ -44,9 +44,6 @@ ros2 topic list -v
 # sets color resolution to 1280x720 at 15 fps and depth resolution to 1280x720 at 5 fps
 ros2 launch realsense2_camera rs_launch.py rgb_camera.color_profile:=1280x720x15 depth_module.depth_profile:=1280x720x5
 
-roslaunch realsense2_camera rs_camera.launch camera:=cam_1 serial_no:=108222250719
-roslaunch realsense2_camera rs_camera.launch camera:=cam_2 serial_no:=105322250885
-
 ```
 
 ## Running detect_and_pick.py

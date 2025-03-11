@@ -13,7 +13,7 @@ def generate_launch_description():
     # Define launch arguments
     camera_config_arg = DeclareLaunchArgument(
         'camera_config',
-        default_value='src/mark_interactive_properties/cameras.yml',
+        default_value='src/cameras.yml',
         description='Path to the camera configuration YAML file'
     )
     
