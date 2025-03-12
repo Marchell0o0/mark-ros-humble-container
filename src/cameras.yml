@@ -33,6 +33,7 @@ cameras:
       - 0.15114093849811483
       - -0.006532127546872332
       - -0.06171023944085655
+    mount: 'IN_HAND'
 
   scene_camera:
     calibration:
@@ -68,6 +69,7 @@ cameras:
       - 1.0521542738492295
       - 0.05343591423104473
       - 0.3338867224449578
+    mount: 'IN_WORLD'
   # top_camera:
   #   calibration:
   #     camera_matrix:
