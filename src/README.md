@@ -16,6 +16,12 @@ Update calibration data for a camera in cameras.yml
 python3 src/get_camera_intrinsics.py --camera <camera_name>
 ```
 
+List available cameras
+
+```bash
+rs-enumerate-devices | grep Serial
+```
+
 Run the camera nodes from cameras.yml
 
 ```bash
