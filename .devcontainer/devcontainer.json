@@ -27,19 +27,17 @@
         "DISPLAY": "unix:0",
         "ROS_AUTOMATIC_DISCOVERY_RANGE": "SUBNET",
         "ROS_DOMAIN_ID": "77",
-        "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp" // or "rmw_cyclonedds_cpp"
+        "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp"
     },
     "runArgs": [
         "--net=host",
         "--ipc=host",
-        "--gpus=all",
         "-e", "DISPLAY=${env:DISPLAY}",
-        "--device-cgroup-rule=c 81:* rmw",  // for video devices
-        "--device-cgroup-rule=c 189:* rmw"  // for USB devices
+        "--device-cgroup-rule=c 81:* rmw",
+        "--device-cgroup-rule=c 189:* rmw"
     ],
     "mounts": [
-       "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.ssh,target=/home/imitlearn/.ssh,type=bind,consistency=cached",
         "source=/dev/bus/usb,target=/dev/bus/usb,type=bind"
     ],
