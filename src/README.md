@@ -25,12 +25,12 @@ rs-enumerate-devices | grep Serial
 Run the camera nodes from cameras.yml
 
 ```bash
+# Launch all cameras
 ros2 launch src/multi_camera_launch.py
+
+# Launch specific cameras by name (e.g. only scene_camera and arm_camera)
+ros2 launch src/multi_camera_launch.py available_cameras:=scene_camera,arm_camera
 ```
-
-
-
-
 
 Useful commands:
 ```bash

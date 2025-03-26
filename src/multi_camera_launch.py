@@ -17,12 +17,24 @@ def generate_launch_description():
         description='Path to the camera configuration YAML file'
     )
     
-    # Get the camera config path from the launch argument
+    available_cameras_arg = DeclareLaunchArgument(
+        'available_cameras',
+        default_value='',
+        description='Comma-separated list of camera names to launch (e.g. "camera1,camera2")'
+    )
+    
+    # Get the camera config path and available cameras from launch arguments
     camera_config_path = LaunchConfiguration('camera_config')
+    available_cameras = LaunchConfiguration('available_cameras')
     
     # Define a function to load the config when the launch file is executed
     def get_camera_config(context):
         config_file = context.perform_substitution(camera_config_path)
+        available_cameras_str = context.perform_substitution(available_cameras)
+        
+        # Parse available cameras into a list
+        available_camera_list = [cam.strip() for cam in available_cameras_str.split(',')] if available_cameras_str else []
+        print(f"Requested cameras: {available_camera_list}")
         
         # Check if the file exists
         if not os.path.exists(config_file):
@@ -43,9 +55,16 @@ def generate_launch_description():
         # Extract the physical cameras (skip logical camera references)
         cameras = []
         for camera_id, camera_config in config['cameras'].items():
+            
             # Skip logical camera aliases that use other cameras
             if 'use_camera' in camera_config:
                 continue
+                
+            # Skip if camera is not in available_cameras list (when specified)
+            if available_camera_list and camera_id not in available_camera_list:
+                continue
+                
+            print(f"Connecting to camera: {camera_id}")
                 
             # Extract the necessary configuration for the launch
             cameras.append({
@@ -107,5 +126,6 @@ def generate_launch_description():
     # Return the LaunchDescription
     return LaunchDescription([
         camera_config_arg,
+        available_cameras_arg,
         OpaqueFunction(function=launch_setup)
     ]) 
