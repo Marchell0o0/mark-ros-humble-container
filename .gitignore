@@ -1,6 +1,6 @@
 #Ignore everything in src except ros2.repos and readme
 src/client
-src/mark_interactive_properties
+src/mark-horpynych-interactive-properties
 src/interfaces
 src/server
 src/mark_oleh_ros
