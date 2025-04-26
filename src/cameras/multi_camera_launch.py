@@ -13,7 +13,7 @@ def generate_launch_description():
     # Define launch arguments
     camera_config_arg = DeclareLaunchArgument(
         'camera_config',
-        default_value='src/cameras.yml',
+        default_value='src/cameras/cameras.yml',
         description='Path to the camera configuration YAML file'
     )
     
@@ -38,15 +38,8 @@ def generate_launch_description():
         
         # Check if the file exists
         if not os.path.exists(config_file):
-            # Try with package path
-            try:
-                pkg_dir = get_package_share_directory('mark_interactive_properties')
-                alt_config_file = os.path.join(pkg_dir, 'cameras.yml')
-                if os.path.exists(alt_config_file):
-                    config_file = alt_config_file
-            except:
-                print(f"Warning: Could not find camera config at {config_file}")
-                return []
+            print(f"Warning: Could not find camera config at {config_file}")
+            return []
         
         # Load camera configurations from YAML
         with open(config_file, 'r') as f:

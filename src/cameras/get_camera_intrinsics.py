@@ -87,7 +87,7 @@ class CameraIntrinsicsNode(Node):
 
 def main():
     parser = argparse.ArgumentParser(description='Get camera intrinsics and update YAML file')
-    parser.add_argument('--yaml', type=str, default='src/cameras.yml',
+    parser.add_argument('--yaml', type=str, default='src/cameras/cameras.yml',
                         help='Path to cameras.yml file')
     parser.add_argument('--camera', type=str, required=True,
                         help='Logical camera name in the YAML file (e.g., top_camera, scene_camera)')
