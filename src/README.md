@@ -13,7 +13,7 @@ Cameras with all their calibration and ids are stored in `cameras.yml`.
 Update calibration data for a camera in cameras.yml
 
 ```bash
-python3 src/get_camera_intrinsics.py --camera <camera_name>
+python3 src/cameras/get_camera_intrinsics.py --camera <camera_name>
 ```
 
 List available cameras
@@ -26,10 +26,10 @@ Run the camera nodes from cameras.yml
 
 ```bash
 # Launch all cameras
-ros2 launch src/multi_camera_launch.py
+ros2 launch src/cameras/multi_camera_launch.py
 
 # Launch specific cameras by name (e.g. only scene_camera and arm_camera)
-ros2 launch src/multi_camera_launch.py available_cameras:=scene_camera,arm_camera
+ros2 launch src/cameras/multi_camera_launch.py available_cameras:=scene_camera,arm_camera
 ```
 
 Useful commands:
