@@ -32,6 +32,7 @@
     "runArgs": [
         "--net=host",
         "--ipc=host",
+        "--name=ros2-dev-container",
         "-e", "DISPLAY=${env:DISPLAY}",
         "--device-cgroup-rule=c 81:* rmw",
         "--device-cgroup-rule=c 189:* rmw"
