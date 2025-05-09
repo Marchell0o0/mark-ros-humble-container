@@ -4,6 +4,8 @@ src/mark-horpynych-interactive-properties
 src/interfaces
 src/server
 src/mark_oleh_ros
+src/frontend
+src/ai-chatbot
 
 
 devel/

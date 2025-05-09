@@ -103,6 +103,7 @@ RUN apt-get update && apt-get install -y sudo \
 RUN apt-get update && apt-get install -y git-core bash-completion \
   && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc \
   && echo "if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash; fi" >> /home/$USERNAME/.bashrc \
+  && echo "export PATH=\$PATH:/opt/poetry/bin" >> /home/$USERNAME/.bashrc \
   && rm -rf /var/lib/apt/lists/*
 
 ENV DEBIAN_FRONTEND=
@@ -119,6 +120,17 @@ RUN apt-get update \
    && apt-get clean -y \
    && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=dialog
+
+# Install Poetry
+ENV POETRY_HOME=/opt/poetry
+RUN curl -sSL https://install.python-poetry.org | python3 - \
+    && cd /usr/local/bin \
+    && ln -s /opt/poetry/bin/poetry \
+    && poetry config virtualenvs.create false
+
+# Add Poetry to PATH for all users
+RUN echo "export PATH=$PATH:/opt/poetry/bin" >> /etc/profile.d/poetry.sh \
+    && chmod +x /etc/profile.d/poetry.sh
 
 # Install graphviz and pygraphviz dependencies
 ENV DEBIAN_FRONTEND=noninteractive

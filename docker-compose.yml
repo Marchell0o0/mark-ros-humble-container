@@ -1,0 +1,37 @@
+services:
+  # Redis container
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Next.js frontend container
+  frontend:
+    build:
+      context: ./src/frontend # Updated path to frontend in src directory
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/frontend:/app
+      # Don't override the node_modules directory inside the container
+      - /app/node_modules
+    networks:
+      - app-network
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data: 
